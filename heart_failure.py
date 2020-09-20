@@ -47,3 +47,44 @@ class HeartFailure(object):
             return is_int
         else:
             return [is_int, index]
+
+    def get_month(self, data):
+        """ This function returns the month, which parameter is given by days
+
+        Arguments:
+            data {Series} - a column Series
+        Returns:
+            String value of month
+        """
+
+        # Declaring an array for saving the string using numpy
+        result = np.empty(len(data),dtype=object)
+
+        # Iterate over the elements and Checking what 
+        # month does the time belong in the 2015
+        for x in range(len(data)):
+            if(data[x] >= 1 and data[x] <= 31):
+                result[x] = "Jan"
+            elif (data[x] >= 32 and data[x] <= 59):
+                result[x] = "Feb"
+            elif (data[x] >= 60 and data[x] <= 90):
+                result[x] = "March"
+            elif (data[x] >= 91 and data[x] <= 120):
+                result[x] = "April"
+            elif (data[x] >= 121 and data[x] <= 151):
+                result[x] = "May"
+            elif (data[x] >= 152 and data[x] <= 181):
+                result[x] = "June"
+            elif (data[x] >= 182 and data[x] <= 212):
+                result[x] = "July"
+            elif (data[x] >= 213 and data[x] <= 244):
+                result[x] = "Aug"
+            elif (data[x] >= 245 and data[x] <= 274):
+                result[x] = "Sept"
+            elif (data[x] >= 275 and data[x] <= 305):
+                result[x] = "Oct"
+            elif (data[x] >= 306 and data[x] <= 335):
+                result[x] = "Nov"
+            elif (data[x] >= 336 and data[x] <= 366):
+                result[x] = "Dec"
+        return result
