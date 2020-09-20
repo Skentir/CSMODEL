@@ -48,7 +48,7 @@ class HeartFailure(object):
         else:
             return [is_int, index]
 
-    def get_month(self, data):
+    def get_month(self, data, dropped):
         """ This function returns the month, which parameter is given by days
 
         Arguments:
@@ -58,33 +58,40 @@ class HeartFailure(object):
         """
 
         # Declaring an array for saving the string using numpy
-        result = np.empty(len(data),dtype=object)
+        result = []
 
         # Iterate over the elements and Checking what 
         # month does the time belong in the 2015
-        for x in range(len(data)):
-            if(data[x] >= 1 and data[x] <= 31):
-                result[x] = "Jan"
-            elif (data[x] >= 32 and data[x] <= 59):
-                result[x] = "Feb"
-            elif (data[x] >= 60 and data[x] <= 90):
-                result[x] = "March"
-            elif (data[x] >= 91 and data[x] <= 120):
-                result[x] = "April"
-            elif (data[x] >= 121 and data[x] <= 151):
-                result[x] = "May"
-            elif (data[x] >= 152 and data[x] <= 181):
-                result[x] = "June"
-            elif (data[x] >= 182 and data[x] <= 212):
-                result[x] = "July"
-            elif (data[x] >= 213 and data[x] <= 244):
-                result[x] = "Aug"
-            elif (data[x] >= 245 and data[x] <= 274):
-                result[x] = "Sept"
-            elif (data[x] >= 275 and data[x] <= 305):
-                result[x] = "Oct"
-            elif (data[x] >= 306 and data[x] <= 335):
-                result[x] = "Nov"
-            elif (data[x] >= 336 and data[x] <= 366):
-                result[x] = "Dec"
-        return result
+        # We need to + 2 since we dropped 2 rows
+        total_size = len(data)
+
+        for x in range(total_size) :
+            if x in dropped:
+                x = x + 1
+
+            if data.loc[x].item() >= 1 and data.loc[x].item() <= 31:
+                result.append("Jan")
+            elif data.loc[x].item() >= 32 and data.loc[x].item() <= 59:
+                result.append("Feb")
+            elif data.loc[x].item() >= 60 and data.loc[x].item() <= 90:
+                result.append("March")
+            elif data.loc[x].item() >= 91 and data.loc[x].item() <= 120:
+                result.append("April")
+            elif data.loc[x].item() >= 121 and data.loc[x].item() <= 151:
+                result.append("May")
+            elif data.loc[x].item() >= 152 and data.loc[x].item() <= 181:
+                result.append("June")
+            elif data.loc[x].item() >= 182 and data.loc[x].item() <= 212:
+                result.append("July")
+            elif data.loc[x].item() >= 213 and data.loc[x].item() <= 244:
+                result.append("Aug")
+            elif data.loc[x].item() >= 245 and data.loc[x].item() <= 274:
+                result.append("Sept")
+            elif data.loc[x].item() >= 275 and data.loc[x].item() <= 305:
+                result.append("Oct")
+            elif data.loc[x].item() >= 306 and data.loc[x].item() <= 335:
+                result.append("Nov")
+            elif data.loc[x].item() >= 336 and data.loc[x].item() <= 366:
+                result.append("Dec")
+
+        return pd.Series(result)
