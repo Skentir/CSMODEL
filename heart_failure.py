@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import math
 
 class HeartFailure(object):
 
@@ -96,3 +97,12 @@ class HeartFailure(object):
         result = pd.Series(result).rename("month")
 
         return result
+        
+    def drop_outliers(self, data, field):
+        """
+        """
+        
+        distance = 1.5 * (np.percentile(data[field], 75) - np.percentile(data[field], 25))
+        
+        data.drop(data[data[field] > distance + np.percentile(data[field], 75)].index, inplace=True)
+        data.drop(data[data[field] < np.percentile(data[field], 25) - distance].index, inplace=True)
