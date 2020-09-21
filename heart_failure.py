@@ -57,55 +57,6 @@ class HeartFailure(object):
         
         data.drop(data[data[field] > distance + np.percentile(data[field], 75)].index, inplace=True)
         data.drop(data[data[field] < np.percentile(data[field], 25) - distance].index, inplace=True)
-
-    def get_month(self, series, dropped):
-        """ This function returns the month, which parameter is given by days
-
-        Arguments:
-            data {Series} - a column Series
-        Returns:
-            String value of month
-        """
-
-        # Declaring an array for saving the string
-        data = series
-        result = []
-
-        # Iterate over the elements and Checking what 
-        # month does the time belong in the 2015
-        total_size = len(data)
-    
-        for x in range(total_size):
-
-            if data.values[x] >= 1 and data.values[x] <= 31:
-                result.append("Jan")
-            elif data.values[x] >= 32 and data.values[x] <= 59:
-                result.append("Feb")
-            elif data.values[x] >= 60 and data.values[x] <= 90:
-                result.append("March")
-            elif data.values[x] >= 91 and data.values[x] <= 120:
-                result.append("April")
-            elif data.values[x] >= 121 and data.values[x] <= 151:
-                result.append("May")
-            elif data.values[x] >= 152 and data.values[x] <= 181:
-                result.append("June")
-            elif data.values[x] >= 182 and data.values[x] <= 212:
-                result.append("July")
-            elif data.values[x] >= 213 and data.values[x] <= 244:
-                result.append("Aug")
-            elif data.values[x] >= 245 and data.values[x] <= 274:
-                result.append("Sept")
-            elif data.values[x] >= 275 and data.values[x] <= 305:
-                result.append("Oct")
-            elif data.values[x] >= 306 and data.values[x] <= 335:
-                result.append("Nov")
-            elif data.values[x] >= 336 and data.values[x] <= 366:
-                result.append("Dec")
-
-        # Naming the series as 'month' and make the array to series
-        result = pd.Series(result).rename("month")
-
-        return result
         
     def get_mean_difference(self, data):
         """ This function gets the difference between the means of two
@@ -141,8 +92,6 @@ class HeartFailure(object):
         means = pd.Series(temp)
 
         return means
-<<<<<<< Updated upstream
-=======
     
     def get_month(self, data):
         """ This function returns the month given by days.
@@ -191,4 +140,3 @@ class HeartFailure(object):
         month = pd.Series(month)
 
         return month
->>>>>>> Stashed changes
