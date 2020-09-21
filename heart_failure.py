@@ -98,6 +98,7 @@ class HeartFailure(object):
         
         Arguments:
             series {Series} - a column Series
+            dropped {list}
         Returns:
             result {Series} - a column Series
         """
