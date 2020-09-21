@@ -62,10 +62,10 @@ class HeartFailure(object):
         data = series
         result = []
 
-        # Iterate over the elements and Checking what 
-        # month does the time belong in the 2015
         total_size = len(data)
     
+        # Iterate over the elements and checking what 
+        # month does the time belong in the 2015
         for x in range(total_size):
 
             if data.values[x] >= 1 and data.values[x] <= 31:
