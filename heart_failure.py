@@ -141,3 +141,54 @@ class HeartFailure(object):
         means = pd.Series(temp)
 
         return means
+<<<<<<< Updated upstream
+=======
+    
+    def get_month(self, data):
+        """ This function returns the month given by days.
+        
+        Arguments:
+            series {Series} - a column Series
+        Returns:
+            result {Series} - a column Series
+        """
+
+        # Create two empty list.
+        month = []
+        
+        # Get the length of data.
+        total_size = len(data)
+
+        # Iterate over the elements and check what month does the time 
+        # belong in the 2015.          
+        for x in range(total_size):
+            if data.values[x] >= 1 and data.values[x] <= 31:
+                month.append(1)
+            elif data.values[x] >= 32 and data.values[x] <= 58:
+                month.append(2)
+            elif data.values[x] >= 59 and data.values[x] <= 89:
+                month.append(3)
+            elif data.values[x] >= 90 and data.values[x] <= 119:
+                month.append(4)
+            elif data.values[x] >= 120 and data.values[x] <= 150:
+                month.append(5)
+            elif data.values[x] >= 151 and data.values[x] <= 180:
+                month.append(6)
+            elif data.values[x] >= 181 and data.values[x] <= 211:
+                month.append(7)
+            elif data.values[x] >= 212 and data.values[x] <= 243:
+                month.append(8)
+            elif data.values[x] >= 244 and data.values[x] <= 273:
+                month.append(9)
+            elif data.values[x] >= 274 and data.values[x] <= 304:
+                month.append(10)
+            elif data.values[x] >= 305 and data.values[x] <= 334:
+                month.append(11)
+            elif data.values[x] >= 335 and data.values[x] <= 365:
+                month.append(12)
+
+        # Name the series as 'month' and convert list to a Series.
+        month = pd.Series(month)
+
+        return month
+>>>>>>> Stashed changes
