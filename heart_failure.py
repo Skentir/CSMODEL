@@ -106,3 +106,38 @@ class HeartFailure(object):
         result = pd.Series(result).rename("month")
 
         return result
+        
+    def get_mean_difference(self, data):
+        """ This function gets the difference between the means of two
+        groups.
+        
+        Arguments:
+            data {DataFrame}
+        Returns:
+            means {Series} - contains the difference of means for the
+                groups.
+        """
+        # Create a temporary blank list.
+        temp = []
+
+        # Get the number of columns in the DataFrame.
+        col = data.shape[1]
+
+        # Iterate the number of columns and only select the column having
+        # the data for means. Since there is only two groups, the subtraction
+        # will be hardcoded. There are two possible scenarios where the first
+        # mean is larger than the second mean or vise versa. When the difference
+        # is acquired, add it to the temporary list.
+        for x in range(col):
+            if x % 2 == 0:
+                if data.loc[0][x] >= data.loc[1][x]:
+                    diff = data.loc[0][x] - data.loc[1][x]
+                    temp.append(diff)
+                elif data.loc[0][x] < data.loc[1][x]: 
+                    diff = data.loc[1][x] - data.loc[0][x]
+                    temp.append(diff)
+
+        # Convert the list to a Series.
+        means = pd.Series(temp)
+
+        return means
